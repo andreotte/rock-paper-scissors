@@ -8,22 +8,14 @@ namespace RockPaperScissors
 {
     class FreeWillPlayer : Player
     {
-        public FreeWillPlayer()
+        public FreeWillPlayer(string Name) : base(Name)
         {
-            this.name = SetName();
         }
 
-        public string SetName()
-        {
-            Console.Write("Enter your name: ");
-            string userName = Console.ReadLine();
-            return userName;
-
-        }
         public override string GenerateRoshambo()
         {
-
-            Console.WriteLine($"{name} - throw rock, paper, or scissors?");
+            Console.WriteLine();
+            Console.WriteLine($"{Name} - throw rock, paper, or scissors?");
             Console.Write(": ");
             string input = Console.ReadLine().Trim().ToLower();
 

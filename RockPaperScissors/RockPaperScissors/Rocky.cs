@@ -8,10 +8,11 @@ namespace RockPaperScissors
 {
     class Rocky : Player
     {
-        public Rocky()
+        public Rocky(string Name) : base(Name)
         {
-            name = "Rocky";
+            
         }
+
         public override string GenerateRoshambo()
         {
             RoshamboValue value = new RoshamboValue(0); // 0 corresponds with "rock" 

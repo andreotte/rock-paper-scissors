@@ -8,24 +8,43 @@ namespace RockPaperScissors
 {
     class RoshamboApp
     {
+        Random rando = new Random();
+
         public FreeWillPlayer player1;
+        public Player player2;
+        public int Player1Wins { get; set; }
+        public int Player2Wins { get; set; }
 
         public RoshamboApp()
         {
-            FreeWillPlayer player = new FreeWillPlayer();
-            player1 = player;
+            Console.Write("Enter your name: ");
+            string userName = Console.ReadLine();
+            player1 = new FreeWillPlayer(userName);
             NewGame();
         }
 
         public void NewGame()
         {
-            //player1.SetName();
-            DeterminePlayer2();
+            bool run = true;
+            do
+            {
+                Console.WriteLine();
+                DeterminePlayer2();
+                Console.WriteLine();
+                Console.Write("Play again? (y/n): ");
+                string playAgain = Console.ReadLine().ToLower().Trim();
+                Console.Clear();
+
+                if (playAgain == "n" || playAgain == "no")
+                {
+                    run = false; 
+                }
+            } while (run);
         }
 
         public void DeterminePlayer2()
         {
-            Console.WriteLine($"OK, {player1.name}. Who do you want to play against?");
+            Console.WriteLine($"OK, {player1.Name}. Who do you want to play against?");
             Console.WriteLine("1: Randy");
             Console.WriteLine("2: Rocky");
             Console.WriteLine("3: Another human");
@@ -33,21 +52,23 @@ namespace RockPaperScissors
 
             if (input == "randy" || input == "1")
             {
-                Randy randall = new Randy();
-                FindWinner(player1, randall);
+                player2 = new Randy("Randy", rando);
+                FindWinner(player1, player2);
             }
 
             else if (input == "rocky" || input == "2")
             {
-                Rocky rocky = new Rocky();
-                FindWinner(player1, rocky);
+                player2 = new Rocky("The Rock");
+                FindWinner(player1, player2);
             }
 
             else if (input == "another human" || input == "3")
             {
-                Console.WriteLine("OK, player 2.");
-                FreeWillPlayer secondPlayer = new FreeWillPlayer();
-                FindWinner(player1, secondPlayer);
+                Console.WriteLine();
+                Console.Write("OK player 2. Enter your name: ");
+                string inputName = Console.ReadLine();
+                player2 = new FreeWillPlayer(inputName);
+                FindWinner(player1, player2);
             }
             else
             {
@@ -60,13 +81,17 @@ namespace RockPaperScissors
         {
             if (player1Throw == player2Throw)
             {
-                Console.WriteLine($"{player1.name} threw {player1Throw}. secondPlayer threw {player2Throw}.");
+                Console.WriteLine();
+                Console.WriteLine($"{player1.Name} threw . {player2.Name} threw {player2Throw}.");
                 Console.WriteLine("Its a tie!");
+                Console.WriteLine($"{player1.Name}'s wins: {Player1Wins}, Opponent wins: {Player2Wins}");
             }
             else
             {
-                Console.WriteLine($"{player1.name} threw {player1Throw}. secondPlayer threw {player2Throw}."); // need to pull second player out of here
-                Console.WriteLine($"{isWinner.name} is the winner!");
+                Console.WriteLine();
+                Console.WriteLine($"{player1.Name} threw {player1Throw}. {player2.Name} threw {player2Throw}."); // need to pull second player out of here
+                Console.WriteLine($"{isWinner.Name} is the winner!");
+                Console.WriteLine($"{player1.Name}'s wins: {Player1Wins}, Opponent wins: {Player2Wins}");
             }
         }
 
@@ -88,11 +113,13 @@ namespace RockPaperScissors
                     if(player2Throw == "scissors")
                     {
                         isWinner = one;
+                        Player1Wins += 1;
                         PrintInfo(isWinner, player1Throw, player2Throw);
                     }
                     else
                     {
                         isWinner = two;
+                        Player2Wins += 1;
                         PrintInfo(isWinner, player1Throw, player2Throw);
                     }
                 } 
@@ -101,11 +128,13 @@ namespace RockPaperScissors
                     if(player2Throw == "rock")
                     {
                         isWinner = one;
+                        Player1Wins += 1;
                         PrintInfo(isWinner, player1Throw, player2Throw);
                     }
                     else
                     {
                         isWinner = two;
+                        Player2Wins += 1;
                         PrintInfo(isWinner, player1Throw, player2Throw);
                     }
                 }
@@ -114,11 +143,13 @@ namespace RockPaperScissors
                     if(player2Throw == "paper")
                     {
                         isWinner = one;
+                        Player1Wins += 1;
                         PrintInfo(isWinner, player1Throw, player2Throw);
                     }
                     else
                     {
                         isWinner = two;
+                        Player2Wins += 1;
                         PrintInfo(isWinner, player1Throw, player2Throw);
                     }
                 }

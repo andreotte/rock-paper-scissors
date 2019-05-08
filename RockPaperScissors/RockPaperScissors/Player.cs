@@ -9,15 +9,11 @@ namespace RockPaperScissors
     public abstract class Player
     {
         public string name;
+        public string Name { get; set; }
 
-        public Player()
+        public Player(string Name)
         {
-
-        }
-
-        public Player(string name)
-        {
-            this.name = name;
+            this.Name = Name;
         }
 
         public abstract string GenerateRoshambo();

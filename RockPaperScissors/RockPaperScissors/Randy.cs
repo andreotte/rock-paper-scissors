@@ -8,14 +8,17 @@ namespace RockPaperScissors
 {
     class Randy : Player
     {
-        public Randy()
+
+        public Random R { get; set; }
+
+        public Randy(string Name, Random R) : base(Name)
         {
-            name = "Randy";
+            this.R = R;
         }
+
         public override string GenerateRoshambo()
         {
-            Random rand = new Random();
-            int random = rand.Next(0, 3);
+            int random = R.Next(0, 3);
             RoshamboValue value = new RoshamboValue(random);
             return value.GenerateValue();
         }

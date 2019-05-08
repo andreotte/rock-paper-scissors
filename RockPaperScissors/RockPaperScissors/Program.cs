@@ -10,7 +10,13 @@ namespace RockPaperScissors
     {
         static void Main(string[] args)
         {
+            //bool run = true;
+            //while (run)
+            //{
+            //    RoshamboApp game = new RoshamboApp();
+            //}
             RoshamboApp game = new RoshamboApp();
+
         }
     }
 }
