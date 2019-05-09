@@ -8,12 +8,13 @@ namespace RockPaperScissors
 {
     class RoshamboApp
     {
+        // Random object to pass to Player Randy and reuse if playing multiple times. 
         Random rando = new Random();
 
-        public FreeWillPlayer player1;
-        public Player player2;
-        public int Player1Wins { get; set; }
-        public int Player2Wins { get; set; }
+        public FreeWillPlayer player1;  // The user player
+        public Player player2;  // Player2 can be Rocky, Randy, or another human that will choose an RPS value
+        public int Player1Wins { get; set; }  // Holds the user wins 
+        public int Player2Wins { get; set; }  // Holds the opponent wins. *All opponent wins are added together reguardless of oppenent type.  
 
         public RoshamboApp()
         {
@@ -23,6 +24,8 @@ namespace RockPaperScissors
             NewGame();
         }
 
+        // Method to generate a new game inside of the same session. User player will remain the same,
+        // but user will be prompted to choose an opponent each time. 
         public void NewGame()
         {
             bool run = true;
@@ -42,6 +45,7 @@ namespace RockPaperScissors
             } while (run);
         }
 
+        // Method for the user player to decide who they want to play against. 
         public void DeterminePlayer2()
         {
             Console.WriteLine($"OK, {player1.Name}. Who do you want to play against?");
@@ -77,7 +81,7 @@ namespace RockPaperScissors
             }
         }
 
-        public void PrintInfo(Player isWinner, string player1Throw, string player2Throw)
+        public void PrintResult(Player isWinner, string player1Throw, string player2Throw)
         {
             if (player1Throw == player2Throw)
             {
@@ -95,16 +99,18 @@ namespace RockPaperScissors
             }
         }
 
+        // Generate RPS values for each player and determine winner. 
         public void FindWinner(Player one, Player two)
         {
             Player isWinner = null;
 
+            // Generate RPS values
             string player1Throw = one.GenerateRoshambo();
             string player2Throw = two.GenerateRoshambo();
 
             if (player1Throw == player2Throw)
             {
-                PrintInfo(isWinner, player1Throw, player2Throw);
+                PrintResult(isWinner, player1Throw, player2Throw);
             }
             else
             {
@@ -114,13 +120,13 @@ namespace RockPaperScissors
                     {
                         isWinner = one;
                         Player1Wins += 1;
-                        PrintInfo(isWinner, player1Throw, player2Throw);
+                        PrintResult(isWinner, player1Throw, player2Throw);
                     }
                     else
                     {
                         isWinner = two;
                         Player2Wins += 1;
-                        PrintInfo(isWinner, player1Throw, player2Throw);
+                        PrintResult(isWinner, player1Throw, player2Throw);
                     }
                 } 
                 else if (player1Throw == "paper")
@@ -129,13 +135,13 @@ namespace RockPaperScissors
                     {
                         isWinner = one;
                         Player1Wins += 1;
-                        PrintInfo(isWinner, player1Throw, player2Throw);
+                        PrintResult(isWinner, player1Throw, player2Throw);
                     }
                     else
                     {
                         isWinner = two;
                         Player2Wins += 1;
-                        PrintInfo(isWinner, player1Throw, player2Throw);
+                        PrintResult(isWinner, player1Throw, player2Throw);
                     }
                 }
                 else if (player1Throw == "scissors")
@@ -144,13 +150,13 @@ namespace RockPaperScissors
                     {
                         isWinner = one;
                         Player1Wins += 1;
-                        PrintInfo(isWinner, player1Throw, player2Throw);
+                        PrintResult(isWinner, player1Throw, player2Throw);
                     }
                     else
                     {
                         isWinner = two;
                         Player2Wins += 1;
-                        PrintInfo(isWinner, player1Throw, player2Throw);
+                        PrintResult(isWinner, player1Throw, player2Throw);
                     }
                 }
             }

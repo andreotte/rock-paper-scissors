@@ -8,9 +8,9 @@ namespace RockPaperScissors
 {
     class Randy : Player
     {
-
         public Random R { get; set; }
 
+        // Random object created in and passed from RoshamboApp 
         public Randy(string Name, Random R) : base(Name)
         {
             this.R = R;
@@ -19,6 +19,7 @@ namespace RockPaperScissors
         public override string GenerateRoshambo()
         {
             int random = R.Next(0, 3);
+            // random passed to RoshamboValue corresponds to an index in a list containing "rock", "paper", "scissors".
             RoshamboValue value = new RoshamboValue(random);
             return value.GenerateValue();
         }

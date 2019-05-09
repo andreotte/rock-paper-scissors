@@ -9,13 +9,13 @@ namespace RockPaperScissors
     class Rocky : Player
     {
         public Rocky(string Name) : base(Name)
-        {
-            
+        {            
         }
 
         public override string GenerateRoshambo()
         {
-            RoshamboValue value = new RoshamboValue(0); // 0 corresponds with "rock" 
+            // 0 passed to RoshamboValue corresponds to the 0 index in a list containing "rock", "paper", "scissors".
+            RoshamboValue value = new RoshamboValue(0); 
             return value.GenerateValue();               
         }
     }

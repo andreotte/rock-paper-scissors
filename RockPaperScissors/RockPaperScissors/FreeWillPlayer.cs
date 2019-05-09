@@ -12,6 +12,7 @@ namespace RockPaperScissors
         {
         }
 
+        // Ask the FreeWillUsers to throw rock, paper, or scissors.    
         public override string GenerateRoshambo()
         {
             Console.WriteLine();
@@ -19,6 +20,7 @@ namespace RockPaperScissors
             Console.Write(": ");
             string input = Console.ReadLine().Trim().ToLower();
 
+            // Integers passed to RoshamboValue correspond to indecies in a list containing "rock", "paper", "scissors".
             if(input == "rock")
             {
                 RoshamboValue value = new RoshamboValue(0);
